@@ -84,15 +84,15 @@ patch-stamp:
 build: unpack patch build-stamp
 build-stamp:
 	dh_testdir
-	cd $(freetype_u) && ./configure --prefix=/usr CFLAGS="$(CFLAGS)"
+	cd $(freetype_u) && ./configure --prefix=/usr CFLAGS="$(CFLAGS)" --host=$(DEB_HOST_GNU_TYPE)
 #	cd $(freetype_u) && ./configure --prefix=/usr
 	$(MAKE) -C $(freetype_u)
 
-	$(MAKE) -C $(ft2demos_u) TOP_DIR=../$(freetype_u) \
-		X11_PATH=/usr/X11R6 OBJ_DIR=../$(freetype_u)/objs
+#	$(MAKE) -C $(ft2demos_u) TOP_DIR=../$(freetype_u) \
+#		X11_PATH=/usr/X11R6 OBJ_DIR=../$(freetype_u)/objs
 
 
-	docbook-to-man $(freetype_config_sgml) > $(freetype_config_man)
+#	docbook-to-man $(freetype_config_sgml) > $(freetype_config_man)
 
 	touch build-stamp
 
@@ -120,12 +120,12 @@ install: build
 	    exit 1; \
 	fi
 
-	dh_installdirs -p$(demospkg) /usr/bin
-	$(freetype_u)/builds/unix/libtool --mode=install \
-	    cp -av `find $(ft2demos_u)/bin -type f -perm -u=x -maxdepth 1` \
-		$(CURDIR)/debian/$(demospkg)/usr/bin/
+#	dh_installdirs -p$(demospkg) /usr/bin
+#	$(freetype_u)/builds/unix/libtool --mode=install \
+#	    cp -av `find $(ft2demos_u)/bin -type f -perm -u=x -maxdepth 1` \
+#		$(CURDIR)/debian/$(demospkg)/usr/bin/
 
-	cp -a $(freetype_u)/objs/.libs/*so.* $(CURDIR)/debian/$(udebpkg)/usr/lib
+#	cp -a $(freetype_u)/objs/.libs/*so.* $(CURDIR)/debian/$(udebpkg)/usr/lib
 
 # Build architecture-independent files here.
 # Pass -i to all debhelper commands in this target to reduce clutter.
@@ -136,28 +136,28 @@ binary-indep:
 # Build architecture-dependent files here.
 # Pass -a to all debhelper commands in this target to reduce clutter.
 binary-arch: DH_OPTIONS=-a
-binary-arch: build $(libpkg) $(devpkg) $(demospkg) $(udebpkg)
+binary-arch: build $(libpkg) $(devpkg)
 
 $(libpkg): DH_OPTIONS=-p$(libpkg)
 $(libpkg): build install
 	dh_testdir
 	dh_testroot
 	dh_installdirs
-	dh_installdocs $(addprefix $(freetype_u)/docs/,$(libdoc)) \
-		$(ftdocs_d)/docs/ft2faq.html 
-	mkdir debian/$(libpkg)/$(docdir)/$(libpkg)/pcf
-	cp -a $(freetype_u)/src/pcf/README debian/$(libpkg)/$(docdir)/$(libpkg)/pcf/
-	dh_installexamples
+#	dh_installdocs $(addprefix $(freetype_u)/docs/,$(libdoc)) \
+#		$(ftdocs_d)/docs/ft2faq.html 
+#	mkdir debian/$(libpkg)/$(docdir)/$(libpkg)/pcf
+#	cp -a $(freetype_u)/src/pcf/README debian/$(libpkg)/$(docdir)/$(libpkg)/pcf/
+#	dh_installexamples
 #	dh_installmenu
 #	dh_undocumented
-	dh_installchangelogs -k $(freetype_u)/ChangeLog
+#	dh_installchangelogs -k $(freetype_u)/ChangeLog
 ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
 	dh_strip
 endif
 	dh_link
 	dh_compress
 	dh_fixperms
-	dh_makeshlibs -V '$(dependency)' --add-udeb '$(udebpkg)'
+	dh_makeshlibs -V '$(dependency)'
 	dh_installdeb
 	dh_shlibdeps
 	dh_gencontrol
@@ -168,14 +168,14 @@ $(devpkg): DH_OPTIONS=-p$(devpkg)
 $(devpkg): build install
 	dh_testdir
 	dh_testroot
-	dh_installdirs $(docdir)/$(libpkg)
-	ln -s $(libpkg) debian/$(devpkg)/$(docdir)/$(devpkg)
-	dh_installdocs -Xreference/README -Xreference/.cvsignore -Xcopyright \
-		-XLICENSE.TXT -XGPL.TXT \
-		$(ftdocs_d)/docs/* $(freetype_u)/docs/*
-	cd debian/$(devpkg)/usr/share/doc/$(devpkg)/ \
-		&& rm -f $(libdoc) BUILD ft2faq.html
-	dh_installman $(freetype_config_man)
+#	dh_installdirs $(docdir)/$(libpkg)
+#	ln -s $(libpkg) debian/$(devpkg)/$(docdir)/$(devpkg)
+#	dh_installdocs -Xreference/README -Xreference/.cvsignore -Xcopyright \
+#		-XLICENSE.TXT -XGPL.TXT \
+#		$(ftdocs_d)/docs/* $(freetype_u)/docs/*
+#	cd debian/$(devpkg)/usr/share/doc/$(devpkg)/ \
+#		&& rm -f $(libdoc) BUILD ft2faq.html
+#	dh_installman $(freetype_config_man)
 #	dh_installexamples
 #	dh_installchangelogs
 ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
