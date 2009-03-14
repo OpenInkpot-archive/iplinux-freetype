@@ -1,0 +1,6 @@
+freetype-bytecode-interpreter.patch -p0
+freetype-2.1.7-backwards.compat.patch -p0
+freetype-bdflib-large-encodings.patch -p0
+331-hmtx-no-shorts.diff
+enable-full-bytecode-interpreter
+enable-subpixel-rendering.patch
