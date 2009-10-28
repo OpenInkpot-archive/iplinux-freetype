@@ -1,3 +1,9 @@
+freetype (2.3.11-1) asimov; urgency=low
+
+  * Build new release
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Wed, 28 Oct 2009 20:13:33 +0100
+
 freetype (2.3.9-3.ip1+b1) asimov; urgency=low
 
   * Rebuild with new toolchain.
