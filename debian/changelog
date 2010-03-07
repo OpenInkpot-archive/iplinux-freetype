@@ -1,3 +1,12 @@
+freetype (2.3.12-1) zelazny; urgency=low
+
+  * New upstream release:
+    - drop unitialized-vars.patch, applied upstream
+  * Add disable-old-internals.patch to save memory and decreasecode size
+  * Native build fixed.
+
+ -- Mikhail Gusarov <dottedmag@dottedmag.net>  Sun, 07 Mar 2010 23:37:23 +0600
+
 freetype (2.3.11-20091028-1.ip1) asimov; urgency=low
 
   * Fetch new version from upstream git repository
