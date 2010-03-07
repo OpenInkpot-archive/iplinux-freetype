@@ -45,7 +45,7 @@ ver := $(shell dpkg-parsechangelog | sed -n -e's/^Version: \(.*\)-[^-]\+/\1/p')
 freetype_ver := $(ver)
 ftdocs_ver   := $(ver)
 ft2demos_ver := $(ver)
-dependency = $(libpkg) (>= 2.3.11)
+dependency = $(libpkg) (>= 2.3.12)
 
 libpkg := libfreetype6
 devpkg := $(libpkg)-dev
