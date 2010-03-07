@@ -2,3 +2,4 @@ freetype-bytecode-interpreter.patch -p0
 freetype-bdflib-large-encodings.patch -p0
 331-hmtx-no-shorts.diff
 enable-full-bytecode-interpreter
+disable-old-internals.patch
