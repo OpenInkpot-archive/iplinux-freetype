@@ -2,7 +2,7 @@ Source: freetype
 Section: gui
 Priority: optional
 Maintainer: Alexander Kerner <lunohod@openinkpot.org>
-Build-Depends: bzip2, debhelper (>= 5.0.22), docbook-to-man, gettext (>= 0.10.36-2), quilt, libz1-dev
+Build-Depends: bzip2, debhelper (>= 5.0.22), docbook-to-man, gettext (>= 0.10.36-2), quilt, zlib1g-dev
 XCS-Cross-Host-Build-Depends: bzip2, debhelper (>= 5.0.22), gettext (>= 0.10.36-2), quilt
 XCS-Cross-Build-Depends: libz1-dev
 Standards-Version: 3.6.1
