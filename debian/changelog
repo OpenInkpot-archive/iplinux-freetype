@@ -1,3 +1,13 @@
+freetype (2.4.3-1) zelazny; urgency=low
+
+  * New upstream release
+  * Drop obsolete patches:
+    - enable-full-bytecode-interpreter
+    - freetype-bytecode-interpreter.patch
+    - freetype-bdflib-large-encodings.patch
+
+ -- Alexander Kerner <lunohod@openinkpot.org>  Sun, 14 Nov 2010 12:28:00 +0100
+
 freetype (2.3.12-1) zelazny; urgency=low
 
   * New upstream release:
